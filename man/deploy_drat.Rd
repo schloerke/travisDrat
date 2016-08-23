@@ -6,7 +6,7 @@
 \usage{
 deploy_drat(drat_repo = paste(git_user(), "/drat", sep = ""),
   commit_message = paste(git_user_repo(),
-  " update: build $TRAVIS_BUILD_NUMBER", sep = ""),
+  ": travis build $TRAVIS_BUILD_NUMBER", sep = ""),
   valid_branches = c("master"), email = "travis@travis-ci.org",
   name = "Travis CI", output_dir = "_drat")
 }
@@ -15,7 +15,7 @@ deploy_drat(drat_repo = paste(git_user(), "/drat", sep = ""),
 
 \item{commit_message}{string to be used for git commit message}
 
-\item{valid_branches}{string vector of branch names that are allowed to deploy}
+\item{valid_branches}{string vector of branch names that are allowed to deploy. Defaults to "USER/REPO: travis build $TRAVIS_BUILD_NUMBER"}
 
 \item{email}{email of the 'user' making the travis commit}
 

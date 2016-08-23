@@ -74,7 +74,7 @@ secure_token <- function(add = TRUE) {
 #' Publish the package to the drat repo with travis
 #' @param drat_repo "USER/REPO" location of the drat repository
 #' @param commit_message string to be used for git commit message
-#' @param valid_branches string vector of branch names that are allowed to deploy
+#' @param valid_branches string vector of branch names that are allowed to deploy. Defaults to "USER/REPO: travis build $TRAVIS_BUILD_NUMBER"
 #' @param email email of the 'user' making the travis commit
 #' @param name name of the 'user' making the travis commit
 #' @param output_dir location to perform drat functions.  This folder should not exist beforehand
@@ -85,7 +85,7 @@ secure_token <- function(add = TRUE) {
 #' }
 deploy_drat <- function(
   drat_repo = paste(git_user(), "/drat", sep = ""),
-  commit_message = paste(git_user_repo(), " update: build $TRAVIS_BUILD_NUMBER", sep = ""),
+  commit_message = paste(git_user_repo(), ": travis build $TRAVIS_BUILD_NUMBER", sep = ""),
   valid_branches = c("master"),
   email = "travis@travis-ci.org",
   name = "Travis CI",
