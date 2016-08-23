@@ -5,13 +5,17 @@
 \title{Deploy drat repo}
 \usage{
 deploy_drat(drat_repo = paste(git_user(), "/drat", sep = ""),
+  commit_message = paste(git_user_repo(),
+  " update: build $TRAVIS_BUILD_NUMBER", sep = ""),
   valid_branches = c("master"), email = "travis@travis-ci.org",
-  name = "Travis CI", output_dir = "drat")
+  name = "Travis CI", output_dir = "_drat")
 }
 \arguments{
 \item{drat_repo}{"USER/REPO" location of the drat repository}
 
-\item{valid_branches}{character vector of branch names that are allowed to deploy}
+\item{commit_message}{string to be used for git commit message}
+
+\item{valid_branches}{string vector of branch names that are allowed to deploy}
 
 \item{email}{email of the 'user' making the travis commit}
 
