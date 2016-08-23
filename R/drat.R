@@ -106,8 +106,9 @@ deploy_drat <- function(
     "set -o errexit -o nounset
     addToDrat(){
       PKG_REPO=$PWD
-      ls -R
-      echo \"$PKG_REPO/$PKG_TARBALL\"
+
+      ls $PKG_REPO
+      echo \"Using tarball: $PKG_REPO/$PKG_TARBALL\"
 
       cd ..; mkdir ", output_dir, "; cd ", output_dir, "
 
@@ -122,9 +123,8 @@ deploy_drat <- function(
       git fetch --quiet upstream
       git checkout --quiet gh-pages
 
-      Rscript -e \"drat::insertPackage('$PKG_REPO/$PKG_TARBALL', \
-        repodir = '.', \
-        commit='Travis update: build $TRAVIS_BUILD_NUMBER')\"
+      Rscript -e \"drat::insertPackage('$PKG_REPO/$PKG_TARBALL', repodir = '.', commit='Travis update: build $TRAVIS_BUILD_NUMBER')\"
+
       git push
 
       git push --quiet \"https://$GITHUB_PAT@github.com/", drat_repo, ".git\" master:gh-pages > /dev/null 2>&1
