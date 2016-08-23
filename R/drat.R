@@ -119,14 +119,19 @@ deploy_drat <- function(
       git config --global push.default simple
 
       ## Get drat repo
+      echo \"\nAdding upstream remote: '", drat_repo, "'\"
       git remote add upstream \"https://$GITHUB_PAT@github.com/", drat_repo, ".git\"  > /dev/null 2>&1
+
+      echo \"\nFetching upstream\"
       git fetch --quiet upstream
+
+      echo \"\nChecking out gh-pages\"
       git checkout --quiet gh-pages
 
+      echo \"\nInserting package into drat repo\"
       Rscript -e \"drat::insertPackage('$PKG_REPO/$PKG_TARBALL', repodir = '.', commit='Travis update: build $TRAVIS_BUILD_NUMBER')\"
 
-      git push
-
+      echo \"\nPushing to drat repo: ", drat_repo, "\"
       git push --quiet \"https://$GITHUB_PAT@github.com/", drat_repo, ".git\" master:gh-pages > /dev/null 2>&1
 
 
