@@ -7,6 +7,13 @@ git_user <- function() {
   )
 }
 
+git_user_repo <- function() {
+  gsub(
+    ".*[:/]([^/]*/[^.]*)\\.git",
+    "\\1",
+    system("git config --get remote.origin.url", intern = TRUE)
+  )
+}
 
 exists_or_stop <- function(key, msg = paste("'", key, "' is not set", sep = "")) {
   char_count <- system(paste("echo ${#", key, "}", sep = ""), intern = TRUE)
@@ -77,6 +84,7 @@ secure_token <- function(add = TRUE) {
 #' }
 deploy_drat <- function(
   drat_repo = paste(git_user(), "/drat", sep = ""),
+  commit_message = paste(git_user_repo(), " update: build $TRAVIS_BUILD_NUMBER", sep = ""),
   valid_branches = c("master"),
   email = "travis@travis-ci.org",
   name = "Travis CI",
@@ -129,7 +137,8 @@ deploy_drat <- function(
       git checkout --quiet gh-pages
 
       echo \"\nInserting package into drat repo\"
-      Rscript -e \"drat::insertPackage('$PKG_REPO/$PKG_TARBALL', repodir = '.', commit='Travis update: build $TRAVIS_BUILD_NUMBER')\"
+      Rscript -e \"drat::insertPackage('$PKG_REPO/$PKG_TARBALL', repodir = '.', commit='", commit_message, "')\"
+      echo \"commit message: ", commit_message, "\"
 
       echo \"\nPushing to drat repo: ", drat_repo, "\"
       git push --quiet \"https://$GITHUB_PAT@github.com/", drat_repo, ".git\" gh-pages:gh-pages > /dev/null 2>&1
