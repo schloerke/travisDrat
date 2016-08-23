@@ -1,0 +1,14 @@
+Package: travisDrat
+Title: HBGDki drat deployment
+Version: 0.0.0.9000
+Authors@R: person("Barret", "Schloerke", email = "schloerke@gmail.com", role = c("aut", "cre"))
+Description: Helper functions for drat to deploy to the HBGDki drat system.
+License: MIT + file LICENSE
+Depends:
+    R (>= 3.3.1)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 5.0.1
+Imports:
+    drat,
+    devtools

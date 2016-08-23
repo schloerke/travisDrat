@@ -1,0 +1,13 @@
+language: R
+sudo: false
+cache: packages
+notifications:
+  email:
+    on_success: change
+    on_failure: change
+
+after_success:
+  - Rscript -e "travisDrat::deploy_drat("HBGDki/drat")"
+env:
+  global:
+    secure: HK8kl50JysVN2930QAykQaDl+KCDxENSVifv+ftVkG8OBMBrVCtwREosUApYYgC1qKxd2PNNqm1Nc50HQbGcH4N4bYN8QK+bpZnOK6QbIxfOaNEPXqsXfmIb0eN28hjr5BQy4Quoj3Wk85EkCKsC7BkmJpMkyI4PMRTNlIHa2rejBUKMboXxhup4qZA4uJj89n7DsLW8G1Ra/y9F3q4tJWldi268n3jKAtpER0SpT5wiYBEWyUdu/Bz007X44qc/a0ltS6eGtocJfqc+xw0eJyRj6JoYtHDg3yvu14TMOyPxATs7UGGXMsGgk48s8NzWrcYGY6jK477gLCocwfuPQVf53mTjrotp+nVqYJSHQ5UscJpdplW7vSmx3TX0TCV8z2wVpI3ekA6YY7WHczEmCTo/q4oqrxaUnFOWkUhv+5/VtNNY9JLc4W6nLe/CV3Pw4zrMmLOEuAi12DbziewvT5fDl88ms46SDOFhV6tRoYzaTYCvc429UH58UMEb2QGj82fUoRAII8qG7ENs/4wxtqWRaa0rThjS8qjj2TXdNS+VEH5qlkbmwtiE6ixpCTUViXAsROTdcK/WWHbqiDVyM2LhYLmnNbjkZSys2KXruuuy5ZDXTiz+EdQR06+Yt4qxblSKg3XvXbbpNkpJCC5ozGINGgvdkQMOiMFYe+RHJ4s=
