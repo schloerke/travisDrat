@@ -102,6 +102,7 @@ deploy_drat <- function(
     return()
   }
 
+  print(list(output_dir, name, email, drat_repo))
 
   system(paste(
     "set -o errexit -o nounset
