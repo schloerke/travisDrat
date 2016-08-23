@@ -107,6 +107,7 @@ deploy_drat <- function(
     "set -o errexit -o nounset
     addToDrat(){
       PKG_REPO=$PWD
+      ls -R
       echo \"$PKG_REPO/$PKG_TARBALL\"
 
       cd ..; mkdir ", output_dir, "; cd ", output_dir, "
