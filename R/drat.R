@@ -20,6 +20,7 @@ exists_or_stop <- function(key, msg = paste("'", key, "' is not set", sep = ""))
 check_for_travis_gem <- function() {
   bol <- length(suppressWarnings(system("which travis", intern = TRUE))) > 0
   if (!bol) {
+    install_travis()
     stop("travis gem is not installed. Please fix this!")
   }
 }
@@ -32,7 +33,6 @@ install_travis <- function() {
 
 check_for_pat <- function() {
   if (is.null(devtools::github_pat())) {
-    install_travis()
     stop("env variable GITHUB_PAT is not set. Please set this environment variable!")
   }
 }
