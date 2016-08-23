@@ -52,5 +52,9 @@ r_github_packages:
   - HBGDki/travisDrat
 
 after_success:
-  - Rscript -e "travisDrat::deploy_drat('HBGDki/drat')"
+  - Rscript -e "travisDrat::deploy_drat()"
 ```
+
+## Step 3 - Deploy
+
+Push commits to Github.  Travis will activate on the package web hook.  After a successful check of your R package, `travisDrat` will deploy to the drat repo provided.
