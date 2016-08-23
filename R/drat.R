@@ -132,7 +132,7 @@ deploy_drat <- function(
       Rscript -e \"drat::insertPackage('$PKG_REPO/$PKG_TARBALL', repodir = '.', commit='Travis update: build $TRAVIS_BUILD_NUMBER')\"
 
       echo \"\nPushing to drat repo: ", drat_repo, "\"
-      git push --quiet \"https://$GITHUB_PAT@github.com/", drat_repo, ".git\" master:gh-pages > /dev/null 2>&1
+      git push --quiet \"https://$GITHUB_PAT@github.com/", drat_repo, ".git\" gh-pages:gh-pages > /dev/null 2>&1
 
 
     }
