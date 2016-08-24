@@ -74,6 +74,7 @@ secure_token <- function(add = TRUE) {
 #' Publish the package to the drat repo with travis
 #' @param drat_repo "USER/REPO" location of the drat repository
 #' @param commit_message string to be used for git commit message
+#' @param action parameter directly supplied to \code{\link[drat]{insertPackage}}. Default behavior is 'prune'
 #' @param valid_branches string vector of branch names that are allowed to deploy. Defaults to "USER/REPO: travis build $TRAVIS_BUILD_NUMBER"
 #' @param email email of the 'user' making the travis commit
 #' @param name name of the 'user' making the travis commit
@@ -86,12 +87,15 @@ secure_token <- function(add = TRUE) {
 deploy_drat <- function(
   drat_repo = paste(git_user(), "/drat", sep = ""),
   commit_message = paste(git_user_repo(), ": travis build $TRAVIS_BUILD_NUMBER", sep = ""),
+  action = c("prune", "none", "archive"),
   valid_branches = c("master"),
   email = "travis@travis-ci.org",
   name = "Travis CI",
   output_dir = "_drat"
 ) {
   check_for_pat()
+
+  action <- match.arg(action)
 
   # check if travis build number is available
   exists_or_stop("TRAVIS_BUILD_NUMBER")
@@ -110,6 +114,8 @@ deploy_drat <- function(
     cat("Pull requests are not allowed to deploy. Exiting")
     return()
   }
+
+
 
   system(paste(
     "set -o errexit -o nounset
@@ -137,7 +143,7 @@ deploy_drat <- function(
       git checkout --quiet gh-pages
 
       echo \"\nInserting package into drat repo\"
-      Rscript -e \"drat::insertPackage('$PKG_REPO/$PKG_TARBALL', repodir = '.', commit='", commit_message, "')\"
+      Rscript -e \"drat::insertPackage('$PKG_REPO/$PKG_TARBALL', repodir = '.', commit='", commit_message, "', action = '", action, "')\"
       echo \"commit message: ", commit_message, "\"
 
       echo \"\nPushing to drat repo: ", drat_repo, "\"

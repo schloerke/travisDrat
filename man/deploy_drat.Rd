@@ -6,14 +6,17 @@
 \usage{
 deploy_drat(drat_repo = paste(git_user(), "/drat", sep = ""),
   commit_message = paste(git_user_repo(),
-  ": travis build $TRAVIS_BUILD_NUMBER", sep = ""),
-  valid_branches = c("master"), email = "travis@travis-ci.org",
-  name = "Travis CI", output_dir = "_drat")
+  ": travis build $TRAVIS_BUILD_NUMBER", sep = ""), action = c("prune",
+  "none", "archive"), valid_branches = c("master"),
+  email = "travis@travis-ci.org", name = "Travis CI",
+  output_dir = "_drat")
 }
 \arguments{
 \item{drat_repo}{"USER/REPO" location of the drat repository}
 
 \item{commit_message}{string to be used for git commit message}
+
+\item{action}{parameter directly supplied to \code{\link[drat]{insertPackage}}}
 
 \item{valid_branches}{string vector of branch names that are allowed to deploy. Defaults to "USER/REPO: travis build $TRAVIS_BUILD_NUMBER"}
 
