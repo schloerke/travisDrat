@@ -14,7 +14,7 @@ From Dirk's blog:
 
 > To allow Travis CI to push to your GitHub repository, we need to generate a GitHub [API token](https://github.com/settings/tokens/new). After re-entering your password, just select `repo`, or if your repository is public, select `public_repo`. GitHub will create the token and give you a chance to copy it down.
 
-I recommend making a `public_repo` token only since your drat repo is public.
+I recommend making a `public_repo` token only as the drat repo will be publicly available on the gh-pages branch.
 
 
 ### 0.2 - Setup a Personal `drat` Repo
