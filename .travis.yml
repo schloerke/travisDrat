@@ -6,8 +6,8 @@ notifications:
     on_success: change
     on_failure: change
 after_success:
-- Rscript -e "devtools::install()"
-- Rscript -e "travisDrat::deploy_drat()"
+  - Rscript -e "devtools::install()"
+  - Rscript -e "travisDrat::deploy_drat()"
 env:
   global:
     secure: iAUUO/eEKQddRJSnjyHmjHJL4qggkJLyLqhQIUtNC5bbMDYzY5bnwURBqtBQ/jLdVe2eNmjkOBsQ52wOflKfEnWLjraX9j5fEy9/4Y3NniD4kf+CorkX2EvdYsJo9OTYmpI/rnsqnDJl+ZCFl8MMdyymSyBeWOgFHwr7l2FZfdTngjwJ/5y684wFjEhhGQOlQDYff5JDyndNHokRSYUMP8lOjR8ViqPEsXyic0PUO0W1o+WtPcB0qlq/JvfI6MscLLlenhDz26KMhWpd8TvV6Yxm2P0QSnA7VqXiHlE1576UQU00kQuXSJNbGNR3mOjhTll3z5RycStzumYmVOtmw3qyXQ/ZvnFdywBeR+nEJ80gmr2BNClKDHQb9TNonOWcau3WcleX/Qb4WpWFAbApcS0z1oJuF3AJI4YGQ8g4kUr3+ZVpCOCn+fgufSLAUWX2opQ+Lajict+Z3CTFGT94ZeOMZzwjNI6nANjykY85E9uUPvn+S3BIxsDDONyJY2sxXdxbXJxVRh4gBgFDOkxqpQBbPrjlLSlUa7h5oZfQ2C/WCa3Oa9VXZFWq7Py6A4FxFx/iHY7MuhP2TE8+ZlnQphpA0pVvAAUiIYqUTCN77zNPM4sm2Fi3dGQFVgEOR9HmKtReTEbm9ZelV2JDCqI5DXhEYMDCYbUGZchgMQW24do=
