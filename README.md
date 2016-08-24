@@ -8,7 +8,7 @@ This R package is heavily inspired by Colin Gillespie and Dirk Eddelbuettel's bl
 
 ## Step 0
 
-### Generate a Personal Access Token
+### 0.1 - Generate a Personal Access Token
 
 From Dirk's blog:
 
@@ -17,7 +17,7 @@ From Dirk's blog:
 I recommend making a `public_repo` token only since your drat repo is public.
 
 
-### Setup a Personal `drat` Repo
+### 0.2 - Setup a Personal `drat` Repo
 
 Create a new github repository called `drat` with a gh-pages branch.  `drat` will take care of the rest.  
 
@@ -37,7 +37,7 @@ unlink("drat", recursive = TRUE)
 
 ```
 
-### Activate Repository on Travis
+### 0.3 - Activate Repository on Travis
 
 Visit [your profile on Travis](https://travis-ci.org/profile). Make sure your R package repository is active and ready to be checked on Travis.
 
