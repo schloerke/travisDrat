@@ -14,12 +14,32 @@ From Dirk's blog:
 
 > To allow Travis CI to push to your GitHub repository, we need to generate a GitHub [API token](https://github.com/settings/tokens/new). After re-entering your password, just select `repo`, or if your repository is public, select `public_repo`. GitHub will create the token and give you a chance to copy it down.
 
-I recommend making `public_repo` token only if your drat repo is public.
+I recommend making a `public_repo` token only since your drat repo is public.
 
+
+### Setup a Personal `drat` Repo
+
+Create a new github repository called `drat` with a gh-pages branch.  `drat` will take care of the rest.  
+
+To do this programatically...
+
+```{r}
+# Create local github drat repo
+drat::initRepo("drat", ".")
+# Init drat repo
+repo <- git2r::repository("drat")
+# Add github remote to the global defined github user
+git2r::remote_add(repo, "origin", paste0("https://github.com/", git2r::config()$global$github.user, "/test_drat.git"))
+# Push the init'ed repo
+git2r::push(repo, "origin", "refs/heads/gh-pages", credentials = git2r::cred_token())
+# Delete local repo (not needed anymore)
+unlink("drat", recursive = TRUE)
+
+```
 
 ### Activate Repository on Travis
 
-Visit [your profile on Travis](https://travis-ci.org/profile). Make sure your repository is active and ready to be checked on Travis.
+Visit [your profile on Travis](https://travis-ci.org/profile). Make sure your R package repository is active and ready to be checked on Travis.
 
 
 ## Step 1 - Encrypt Personal Access Token
@@ -58,3 +78,13 @@ after_success:
 ## Step 3 - Deploy
 
 Push commits to Github.  Travis will activate on the package web hook.  After a successful check of your R package, `travisDrat` will deploy to the drat repo provided.
+
+## Step 4 - Use Deployed Repo
+
+```{r}
+# Add personal drat repo
+drat::addRepo("schloerke")
+
+# Add any github user drat repo
+drat::addRepo("GITHUB_USER")
+```
