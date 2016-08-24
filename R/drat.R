@@ -116,7 +116,6 @@ deploy_drat <- function(
     addToDrat(){
       PKG_REPO=$PWD
 
-      ls $PKG_REPO
       echo \"Using tarball: $PKG_REPO/$PKG_TARBALL\"
 
       cd ..; mkdir ", output_dir, "; cd ", output_dir, "
