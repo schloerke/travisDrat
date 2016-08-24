@@ -19,9 +19,9 @@ I recommend making a `public_repo` token only as the drat repo will be publicly 
 
 ### 0.2 - Setup a Personal `drat` Repo
 
-Create a new github repository called `drat` with a gh-pages branch.  `drat` will take care of the rest.  
+Create a [new github repository](https://github.com/new) called `drat` with a gh-pages branch.  `drat` will take care of the rest.  
 
-To do this programatically...
+Once your Github `drat` repo is available, create and init the `gh-pages` branch programatically with...
 
 ```{r}
 # Create local github drat repo
@@ -29,13 +29,14 @@ drat::initRepo("drat", ".")
 # Init drat repo
 repo <- git2r::repository("drat")
 # Add github remote to the global defined github user
-git2r::remote_add(repo, "origin", paste0("https://github.com/", git2r::config()$global$github.user, "/test_drat.git"))
+git2r::remote_add(repo, "origin", paste0("https://github.com/", git2r::config()$global$github.user, "/drat.git"))
 # Push the init'ed repo
 git2r::push(repo, "origin", "refs/heads/gh-pages", credentials = git2r::cred_token())
 # Delete local repo (not needed anymore)
 unlink("drat", recursive = TRUE)
-
 ```
+
+To verify that it was successful, visit your newly created github webpage.  Mine is [https://schloerke.github.io/drat/README.md](https://schloerke.github.io/drat/README.md)
 
 ### 0.3 - Activate Repository on Travis
 
