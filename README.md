@@ -49,7 +49,7 @@ Add the following lines to your travis file:
 
 ```{yaml}
 r_github_packages:
-  - HBGDki/travisDrat
+  - schloerke/travisDrat
 
 after_success:
   - Rscript -e "travisDrat::deploy_drat()"
